@@ -1,0 +1,22 @@
+proc optmodel;
+
+var x1 >=0 integer;
+var x2 >=0 integer;
+var x3 >=0 integer;
+var y1 binary;
+var y2 binary;
+var y3 binary;
+
+maximize z= 6*x1-200*y1+4*x2-150*y2+7*x3-100*y3;
+
+con c1: 3*x1+2*x2+6*x3 <= 150;
+con c2: 4*x1+3*x2+4*x3 <= 160;
+con f1: x1 <= y1 * 100;
+con f2: x2 <= y2 * 100;
+con f3: x3 <= y3 * 100;
+
+solve;
+
+print z x1 x2 x3;
+
+quit;

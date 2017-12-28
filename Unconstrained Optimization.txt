@@ -1,0 +1,36 @@
+Minimization
+---------------------------------
+Procedure OptModel;
+	Var x;
+	Minimize y=x^2+2*x-3;
+	Solve;
+	Print x;
+Quit;	
+---------------------------------
+
+
+
+
+Minimization (Concise)
+---------------------------------
+Proc OptModel;
+	Var x;
+	Min y=x^2+2*x-3;
+	Solve;
+	Print x;
+Quit;
+---------------------------------
+
+
+
+
+
+Maximization and Multiple Variables
+-------------------------------------
+Proc OptModel;
+	Var x, y;
+	Max z=-x^2+2*x-y^2;
+	Solve;
+	Print x y;
+Quit;
+--------------------------------------

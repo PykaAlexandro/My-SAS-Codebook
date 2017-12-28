@@ -1,0 +1,14 @@
+proc optmodel;
+
+var x1 integer >=0;
+var x2 integer >=0;
+
+maximize z= 8*x1+20*x2;
+
+con c1: x1+x2<=11;
+con c2: 3*x1+2*x2<=30;
+con c3: 1*x1+3*x2<=28;
+
+solve;
+print x1 x2 z;
+quit;

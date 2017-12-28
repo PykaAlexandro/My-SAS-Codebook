@@ -1,0 +1,56 @@
+---------------------------
+Algebraic Notation
+---------------------------
+proc optmodel;
+
+var x1 binary;
+var x2 binary;
+var x3 binary;
+var x4 binary;
+var x5 binary;
+
+maximize z= 20*x1 + 40*x2 + 20*x3 + 15*x4 + 30*x5;
+
+con c1: 5*x1 + 4*x2 + 3*x3 + 7*x4 + 8*x5 <= 25;
+con c2: x1 + 7*x2 + 9*x3 + 4*x4 + 6*x5 <= 25;
+con c3: 8*x1 + 10*x2 + 2*x3 + x4 + 10*x5 <= 25;
+
+
+solve;
+
+print x1 x2 x3 x4 x5 z;
+
+quit;
+
+------------------------------
+Indexed Notation
+------------------------------
+proc optmodel;
+
+set Years={'Y1','Y2','Y3'};
+set Projects={'P1','P2','P3','P4','P5'};
+
+number expenditure{Projects,Years}=[
+5	1	8			
+4	7	10
+3	9	2
+7	4	1
+8	6	10 ];
+
+number return{Projects}=[20 40 20 15 30];
+
+number available{Years}=[25 25 25];
+
+var X {p in Projects} binary;
+
+maximize Total_Return= sum {p in Projects} X[p]*return[p];
+
+con Available_Funds {y in Years}:
+ sum {p in Projects} X[p]*expenditure[p,y] <= available[y];
+
+solve;
+
+print X Total_Return;
+
+quit;
+-------------------------------
